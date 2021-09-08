@@ -37,8 +37,9 @@
                 <div class="col-12">
                     <div class="tab-panel">
                         <ul class="tab-group">
-                        <button class="tab tab-A is-active btn">माहिती २०२०</button>
+                        <button class="tab tab-A is-active btn">गणेश मूर्ती २०२०</button>
                         <button class="tab tab-B btn">देणगी २०२०</button>
+                        <button class="tab tab-c btn">खर्च २०२०</button>
                     </ul>
                         <div class="panel-group">
                             <div class="panel tab-A is-show my-4">
@@ -74,6 +75,38 @@
                                     </div>
                                 </div>
                             </div>
+                    <!-- Kharch Wrapper Sart -->
+                    <div class="panel tab-B my-4">
+                        <div class="row">
+                            <div class="col-12 col-md-6 m-auto">
+                                <table class="table table-exp table-hover table-success border-light">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">खर्च</th>
+                                        <th scope="col">खर्च रकम</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <table class="table table-hover table-success border-light">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>एकूण खर्च</strong></td>
+                                            <td>२,९२८ /-</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>एकूण जमा</strong></td>
+                                            <td>३,९५८ /-</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>एकूण शिलक</strong></td>
+                                            <td>१,०३० /-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -110,23 +143,41 @@
         };
         });
     </script>
-        <script>
-            fetch("./js/contribution2020.json").then((response) => {
-                return response.json()
-            }).then((data)=>{
-                data.users.map((mapData) => {
-                    let equal = mapData.contribution;
-                    document.querySelector(".table").innerHTML += `
-                    <tbody>
-                          <tr>
-                            <th scope="row">${mapData.id}</th>
-                            <td>${mapData.name}</td>
-                            <td>${mapData.contribution} /-</td>
-                          </tr>
-                    </tbody>
-                    `
-                })
+     <script>
+        fetch("./js/contribution2020.json").then((response) => {
+            return response.json()
+        }).then((data)=>{
+            data.users.map((mapData) => {
+                let equal = mapData.contribution;
+                document.querySelector(".table").innerHTML += `
+                <tbody>
+                      <tr>
+                        <th scope="row">${mapData.id}</th>
+                        <td>${mapData.name}</td>
+                        <td>${mapData.contribution} /-</td>
+                      </tr>
+                </tbody>
+                `
             })
-        </script>
+        })
+    </script>
+     <script>
+        fetch("./js/contribution2020.json").then((response) => {
+            return response.json()
+        }).then((data)=>{
+            data.expence.map((mapData) => {
+                let equal = mapData.contribution;
+                document.querySelector(".table-exp").innerHTML += `
+                <tbody>
+                      <tr>
+                        <th scope="row">${mapData.id}</th>
+                        <td>${mapData.name}</td>
+                        <td>${mapData.exp} /-</td>
+                      </tr>
+                </tbody>
+                `
+            })
+        })
+    </script>
 </body>
 </html>
