@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-2 text-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="images/logo.png"  alt="Logo"></a>
+                    </div>
+                </div>
+                <div class="col-8 text-center">
+                    <div class="innter-wrap position-relative">
+                        <h1>श्री साई गणेश मंडळ, तुळसण २०२१</h1>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="establishment">
+                        <h4>स्थापना : २००६</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="contribution-table">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tab-panel">
+                        <ul class="tab-group">
+                        <button class="tab tab-A is-active btn">माहिती २०२०</button>
+                        <button class="tab tab-B btn">देणगी २०२०</button>
+                    </ul>
+                        <div class="panel-group">
+                            <div class="panel tab-A is-show my-4">
+                                <div class="row">
+                                    <div class="col-10 m-auto col-md-4">
+                                        <div class="main-pic">
+                                            <img src="images/2020/rahul.jpg" class="img-fluid" alt="">
+                                        </div>
+                                   </div>
+                                   <div class="col-12 col-md-6">
+                                    <div class="info text-left my-3">
+                                        <ul>
+                                            <li>गणेश मूर्ती :-  <b>राहुल चंद्रकांत माने</b></li> 
+                                            <li>सत्यनारायण पूजा आणि तीर्थ प्रसाद :-  <b>विलास जागरु माने</b></li> 
+                                        </ul>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    <!-- Dengi Wrapper Start -->
+                            <div class="panel tab-B my-4">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 m-auto">
+                                        <table class="table table-hover table-success border-light">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">देणगीदार</th>
+                                                <th scope="col">वर्गणी</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="dengi-tabs position-fixed text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="dengi-slide">
+                        <a href="index.html" class="btn btn-primary">होम पेज</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+        const tabs = document.getElementsByClassName('tab');
+        for(let i = 0; i < tabs.length; i++) {
+            tabs[i].addEventListener('click', tabSwitch);
+        }
+        function tabSwitch(){
+            document.getElementsByClassName('is-active')[0].classList.remove('is-active');
+            this.classList.add('is-active');
+            document.getElementsByClassName('is-show')[0].classList.remove('is-show');
+            const arrayTabs = Array.prototype.slice.call(tabs);
+            const index = arrayTabs.indexOf(this);
+            document.getElementsByClassName('panel')[index].classList.add('is-show');
+        };
+        });
+    </script>
+        <script>
+            fetch("./js/contribution2020.json").then((response) => {
+                return response.json()
+            }).then((data)=>{
+                data.users.map((mapData) => {
+                    let equal = mapData.contribution;
+                    document.querySelector(".table").innerHTML += `
+                    <tbody>
+                          <tr>
+                            <th scope="row">${mapData.id}</th>
+                            <td>${mapData.name}</td>
+                            <td>${mapData.contribution} /-</td>
+                          </tr>
+                    </tbody>
+                    `
+                })
+            })
+        </script>
+</body>
+</html>
