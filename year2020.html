@@ -162,9 +162,10 @@
         })
     </script>
      <script>
-        fetch("./js/contribution2020.json").then((response) => {
+        fetch("./js/kharch.json").then((response) => {
             return response.json()
         }).then((data)=>{
+            console.log(data);
             data.expence.map((mapData) => {
                 let equal = mapData.contribution;
                 document.querySelector(".table-exp").innerHTML += `
